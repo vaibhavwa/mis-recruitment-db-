@@ -1,0 +1,16 @@
+C:\Users\shwetatod\Pictures\MIS.Services.Recruitment.Database\MIS.Services.Recruitment.Database\bin\Debug\MIS.Services.Recruitment.Database.dacpac
+C:\Users\shwetatod\Pictures\MIS.Services.Recruitment.Database\MIS.Services.Recruitment.Database\bin\Debug\MIS.Services.Recruitment.Database.dll
+C:\Users\shwetatod\Pictures\MIS.Services.Recruitment.Database\MIS.Services.Recruitment.Database\bin\Debug\MIS.Services.Recruitment.Database.pdb
+C:\Users\shwetatod\Pictures\MIS.Services.Recruitment.Database\MIS.Services.Recruitment.Database\obj\Debug\MIS.Services.Recruitment.Database.sqlproj.AssemblyReference.cache
+C:\Users\shwetatod\Pictures\MIS.Services.Recruitment.Database\MIS.Services.Recruitment.Database\obj\Debug\MIS.Services.Recruitment.Database.dll
+C:\Users\shwetatod\Pictures\MIS.Services.Recruitment.Database\MIS.Services.Recruitment.Database\obj\Debug\MIS.Services.Recruitment.Database.pdb
+D:\mis-recruitment-db\mis-recruitment-db-main\mis-recruitment-db-main\MIS.Services.Recruitment.Database\bin\Debug\MIS.Services.Recruitment.Database.dacpac
+D:\mis-recruitment-db\mis-recruitment-db-main\mis-recruitment-db-main\MIS.Services.Recruitment.Database\bin\Debug\MIS.Services.Recruitment.Database.dll
+D:\mis-recruitment-db\mis-recruitment-db-main\mis-recruitment-db-main\MIS.Services.Recruitment.Database\bin\Debug\MIS.Services.Recruitment.Database.pdb
+D:\mis-recruitment-db\mis-recruitment-db-main\mis-recruitment-db-main\MIS.Services.Recruitment.Database\obj\Debug\MIS.Services.Recruitment.Database.sqlproj.AssemblyReference.cache
+D:\mis-recruitment-db\mis-recruitment-db-main\mis-recruitment-db-main\MIS.Services.Recruitment.Database\obj\Debug\Model.xml
+D:\mis-recruitment-db\mis-recruitment-db-main\mis-recruitment-db-main\MIS.Services.Recruitment.Database\obj\Debug\refactor.xml
+D:\mis-recruitment-db\mis-recruitment-db-main\mis-recruitment-db-main\MIS.Services.Recruitment.Database\obj\Debug\postdeploy.sql
+D:\mis-recruitment-db\mis-recruitment-db-main\mis-recruitment-db-main\MIS.Services.Recruitment.Database\obj\Debug\predeploy.sql
+D:\mis-recruitment-db\mis-recruitment-db-main\mis-recruitment-db-main\MIS.Services.Recruitment.Database\obj\Debug\MIS.Services.Recruitment.Database.dll
+D:\mis-recruitment-db\mis-recruitment-db-main\mis-recruitment-db-main\MIS.Services.Recruitment.Database\obj\Debug\MIS.Services.Recruitment.Database.pdb

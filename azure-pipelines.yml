@@ -1,0 +1,46 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: windows-latest
+
+steps:
+# - task: VSBuild@1
+#   inputs:
+#     solution: '**\*.sln'
+
+- task: MSBuild@1
+  inputs:
+    solution: './MIS.Services.Recruitment.Database.sln'
+    msbuildArchitecture: 'x64'
+    platform: 'any cpu'
+    configuration: 'release'
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(agent.builddirectory)\s'
+    Contents: './MIS.Services.Recruitment.Database/bin/Debug/MIS.Services.Recruitment.Database.dacpac'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'RecruitmentDB'
+    publishLocation: 'Container'
+    
+- task: SqlAzureDacpacDeployment@1
+  inputs:
+        azureSubscription: 'SantajiGCybage.OnMicrosoft.com'
+        AuthenticationType: 'server'
+        ServerName: 'cyb-mis-sql.database.windows.net'
+        DatabaseName: 'mis-Finance-Db'
+        SqlUsername: 'azsqladmin'
+        SqlPassword: 'cybage@2011'
+        deployType: 'DacpacTask'
+        DeploymentAction: 'Publish'
+        DacpacFile: './MIS.Services.Recruitment.Database/bin/Debug/MIS.Services.Recruitment.Database.dacpac'
+        IpDetectionMethod: 'AutoDetect'

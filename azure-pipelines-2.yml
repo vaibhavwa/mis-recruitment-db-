@@ -1,0 +1,41 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '6.x'
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
+- powershell: Install-Module -Name SqlServer -Force -AllowClobber
+  displayName: 'Install SQL Server PowerShell Module'
+
+- script: dotnet restore
+  displayName: 'Restore SQL Database Project'
+
+- script: dotnet build --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
+  displayName: 'Build SQL Database Project'
+
+- script: dotnet publish -c $(BuildConfiguration) -o $(Build.ArtifactStagingDirectory)
+  displayName: 'dotnet publish $(BuildConfiguration)'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: $(Build.ArtifactStagingDirectory)
+    artifactName: 'publish'
+    publishLocation: 'Container'
+
+- task: SqlAzureDacpacDeployment@1
+  inputs:
+    azureSubscription: 'SantajiGCybage.OnMicrosoft.com'
+    ServerName: 'cyb-mis-sql.database.windows.net'
+    DatabaseName: 'mis-Finance-Db'
+    SqlUsername: 'azsqladmin'
+    SqlPassword: 'cybage@2011'
+    DacpacFile: '$(Build.ArtifactStagingDirectory)/MIS.Services.Recruitment.Database/bin/Debug/MIS.Services.Recruitment.Database.dacpac'
+    IpDetectionMethod: 'AutoDetect'
+

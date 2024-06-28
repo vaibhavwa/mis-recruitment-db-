@@ -1,0 +1,20 @@
+
+name: deploy database locally using reusable workflow
+on:
+  repository_dispatch:
+    types: [deploy-db-local]
+  workflow_dispatch:
+    
+        
+jobs:
+  Deploy:
+    uses: cybagedevops/mis-reusable/.github/workflows/db-deploy-local.yaml@main
+    with:
+      DB_NAME: Recruitment
+      RUNNER: ${{ github.event.client_payload.RUNNER }}
+      DB_SERVER: ${{ github.event.client_payload.DB_SERVER }}
+      DB_STAGE: ${{ github.event.client_payload.DB_STAGE }}
+      DB_USERNAME: ${{ github.event.client_payload.DB_USERNAME }}
+      DB_PASSWORD: ${{ github.event.client_payload.DB_PASSWORD }}
+    secrets: inherit
+         

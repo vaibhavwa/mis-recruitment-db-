@@ -1,0 +1,16 @@
+name: main-pullrequest-statuscheck
+
+on: 
+    repository_dispatch:
+         types: [build]
+    workflow_dispatch:
+#     pull_request:
+#       branches:
+#        - main
+
+
+jobs:
+  Build-CI:
+     uses: cybagedevops/mis-reusable/.github/workflows/acr.yaml@main
+     with:
+            DB_NAME: Recruitment

@@ -1,0 +1,13 @@
+name: Calling workflow from mis-reusable for database deploy 
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [deploy-db]
+        
+jobs:
+  Deploy:
+    uses: cybagedevops/mis-reusable/.github/workflows/db_deploy.yaml@main
+    with:
+      DB_NAME: Recruitment
+    secrets: inherit
+         

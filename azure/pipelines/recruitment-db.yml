@@ -1,0 +1,75 @@
+name: MIS-RECRUITMENT-DB-CREATE-BUILD-DEPLOY-$(Year:yyyy).$(Month).$(DayOfMonth)-$(rev:rr)
+
+trigger:
+- none
+
+pool: 
+ name: Azure VM Agent Pool
+
+resources:
+  pipelines:
+      - pipeline: mis-project-db-yash
+        source: MIS-PROJECT-DB-CI-CD-YASH-20231107-01
+        trigger: true
+
+  repositories:
+    - repository: mis-reusable
+      type: github
+      name: cybagedevops/mis-reusable
+      endpoint: mis
+      ref: main
+variables:
+ group: MIS-DB-YASH
+
+stages:
+ - stage: 'Build_Publish'
+   displayName: Build and Publish  
+   jobs:
+   - job: 'Build_Publish'
+     displayName: Build and Publish
+     steps:
+      - template: .azure/pipelines/yash/create-build-deploy-db.yml@mis-reusable
+        parameters: 
+              azureSubscription: $(azureSubscription)
+              azureSQLServerName: $(azureSQLServerNameQA)
+              azureSqlAdmin: $(azureSqlAdmin)
+              azureSqlPassword: $(azureSqlPassword)
+              elasticPoolName: $(elasticPoolNameQA)
+              azuredbName: 'mis-recruitment-db-yash-qa'
+              artifactName: 'RecruitmentDB'
+              serviceName: 'Recruitment'
+  
+ - stage: 'QA_Deployment'
+   displayName: QA Deployment Environment
+   jobs:
+   - job: 'QA_Deployment'
+     displayName: QA Deployment Environment
+     steps:
+           
+      - template: .azure/pipelines/yash/db-deploy.yml@mis-reusable
+        parameters: 
+         
+          azureSQLServerName: $(azureSQLServerNameQA)
+          azureSqlAdmin: $(azureSqlAdmin)
+          azureSqlPassword: $(azureSqlPassword)
+          azuredbName: 'mis-recruitment-db-yash-qa'
+          artifactName: 'RecruitmentDB'
+          serviceName: 'Recruitment'
+
+ 
+#  - stage: 'Prod_Deployment'
+#    displayName: Production Deployment Environment
+#    jobs:
+#    - job: 'Production_Deployment'
+#      displayName: Production Deployment Environment
+#      steps:
+      
+#       - template: .azure/pipelines/yash/db-deploy.yml@mis-reusable
+#         parameters: 
+         
+#           azureSQLServerName: $(azureSQLServerNameProd)
+#           azureSqlAdmin: $(azureSqlAdmin)
+#           azureSqlPassword: $(azureSqlPassword)
+#           azuredbName: 'mis-recruitment-db-yash-prod'
+#           artifactName: 'RecruitmentDB'
+#           serviceName: 'Recruitment'
